@@ -1,0 +1,47 @@
+Comando SELECT mostrando dados de duas tabelas
+	EQUIJOIN: comparação com valores retornados apenas pela igualdade de valores
+	NON-EQUIJOINS: comparação sem o operador =
+	OUTER JOIN: comparação que retorna valores da condição JOIN e fora da condição
+	SELF JOIN: é como um equijoin mas a comparação da tabela é com ela mesma
+	
+	FORMA ANSI: uso da clausula JOIN
+	NÃO ANSI: uso da clausula WHERE 
+	
+EQUI JOIN
+
+	SELECT EMPLOYEE_ID, FIRST_NAME, DEPARTAMENT_ID 
+	FROM EMPLOYEE JOIN DEPARTAMENTS
+	ON EMPLOYEE.DEPARTAMENT_ID = DEPARTAMENTS.DEPARTAMENT_ID;
+	
+	SELECT E.EMPLOYEE_ID, E.FIRST_NAME, E.DEPARTAMENT_ID, D.DEPARTAMENT_ID, D.DEPARTAMENT_NAME
+	FROM EMPLOYEE E JOIN DEPARTAMENTS D
+	WHERE E.DEPARTAMENT_ID = D.DEPARTAMENT_ID;
+	
+NON-EQUI JOINS
+	
+	SELECT * FROM EMPLOYEES E, JOBS J
+	WHERE E.SALARY BETWEEN J.MIN_SALARY AND J.MAX_SALARY;
+	
+OUTER JOIN	
+	(+): uso do operador indica que a a consulta retorna o que está dentro da condição where 
+	e o que não está, sendo daquela tabela que possui o operado (+).
+	LEFT OUTER JOIN: retorna todos os valores da tabela da esquerda que estão dentro e fora da condição ON
+	RIGHT OUTER JOIN: retorna todos os valores da tabela da direita que estão dentro e fora da condição ON
+	
+	SELECT E.EMPLOYEE_ID, E.FIRST_NAME, E.DEPARTAMENT_ID, D.DEPARTAMENT_ID, D.DEPARTAMENT_NAME
+	FROM EMPLOYEE E, DEPARTAMENTS D
+	WHERE E.DEPARTAMENT_ID = D.DEPARTAMENT_ID(+);
+	
+	SELECT E.EMPLOYEE_ID, E.FIRST_NAME, E.DEPARTAMENT_ID, D.DEPARTAMENT_ID, D.DEPARTAMENT_NAME
+	FROM EMPLOYEE E LEFT OUTER JOIN DEPARTAMENTS D
+	ON E.DEPARTAMENT_ID = D.DEPARTAMENT_ID;
+	
+SELF JOIN
+	
+	SELECT E.EMPLOYEE_ID, E.FIRST_NAME, E.DEPARTAMENT_ID, E2.MANAGER_ID
+	FROM EMPLOYEES E LEFT OUTER JOIN EMPLOYEES E2
+	ON E.DEPARTAMENT_ID = E2.MANAGER_ID;	
+	
+	SELECT E.EMPLOYEE_ID, E.FIRST_NAME, E.DEPARTAMENT_ID, E2.MANAGER_ID
+	FROM EMPLOYEES E, EMPLOYEES E2
+	WHERE E.DEPARTAMENT_ID = E2.MANAGER_ID(+);	
