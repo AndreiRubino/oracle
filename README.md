@@ -1,6 +1,4 @@
 # oracle
-Scripts e Explicações Oracle
-
 Neste repositório irei compartilhar alguns passos a passos e scripts relacionados ao banco de dados Oracle.
 
 Todos os scripts adicionados já foram testados e executados por mim, seja por aprendizado ou em ambientes de trabalho. Por isso irão encontrar desde scripts muito básicos como outros mais complexos.
